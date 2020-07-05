@@ -34,4 +34,14 @@ class articleControl extends Controller
                 articlemodel::save($data);
                 return redirect('/article');
     }
+    public function drop($id) {
+        ArticleModel::delete($id);
+        return redirect('/article');
+    }
+    public function showw($Id) {
+        $article = ArticleModel::findbyid($Id);
+        $tag = explode(" ",$article[0]->tag);
+        // dd($tag);
+        return view('layouts.show',compact('article','tag'));
+    }
 }
